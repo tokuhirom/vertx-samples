@@ -1,5 +1,6 @@
 package com.example.client;
 
+import io.netty.handler.codec.http.DefaultHttpHeaders;
 import io.vertx.core.http.HttpClientOptions;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.rxjava.core.Vertx;
@@ -26,6 +27,11 @@ public class HighLevelHttpClient {
                 new HttpClientOptions(httpClientOptions).setSsl(false));
         this.httpsClient = vertx.createHttpClient(
                 new HttpClientOptions(httpClientOptions).setSsl(true));
+    }
+
+    public Observable<HttpClientResponse> get(String url) {
+        return request(HttpMethod.GET, url, new DefaultHttpHeaders(),
+                HttpClientRequest::end);
     }
 
     public Observable<HttpClientResponse> request(
