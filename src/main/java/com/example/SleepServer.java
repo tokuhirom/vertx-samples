@@ -3,7 +3,9 @@ package com.example;
 import com.example.client.HighLevelHttpClient;
 import io.netty.handler.codec.http.DefaultHttpHeaders;
 import io.netty.handler.codec.http.HttpResponseStatus;
+import io.vertx.core.VertxOptions;
 import io.vertx.core.http.HttpClientOptions;
+import io.vertx.ext.dropwizard.DropwizardMetricsOptions;
 import io.vertx.rxjava.core.Vertx;
 import io.vertx.rxjava.core.buffer.Buffer;
 import io.vertx.rxjava.core.http.HttpServer;
@@ -19,7 +21,9 @@ public class SleepServer {
         System.setProperty("vertx.logger-delegate-factory-class-name",
                 "io.vertx.core.logging.SLF4JLogDelegateFactory");
 
-        Vertx vertx = Vertx.vertx();
+        Vertx vertx = Vertx.vertx(new VertxOptions().setMetricsOptions(
+                new DropwizardMetricsOptions().setJmxEnabled(true)
+        ));
         HttpServer httpServer = vertx.createHttpServer();
         Router router = Router.router(vertx);
         router.route("/vertx/sleep/:ms").handler(
@@ -43,6 +47,6 @@ public class SleepServer {
                             );
                 }
         );
-        httpServer.requestHandler(router::accept).listen(8080);
+        httpServer.requestHandler(router::accept).listen(8081);
     }
 }
