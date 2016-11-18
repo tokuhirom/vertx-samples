@@ -1,13 +1,8 @@
 package com.example;
 
-import com.example.client.HighLevelHttpClient;
-import io.netty.handler.codec.http.DefaultHttpHeaders;
-import io.netty.handler.codec.http.HttpResponseStatus;
 import io.vertx.core.VertxOptions;
-import io.vertx.core.http.HttpClientOptions;
 import io.vertx.ext.dropwizard.DropwizardMetricsOptions;
 import io.vertx.rxjava.core.Vertx;
-import io.vertx.rxjava.core.buffer.Buffer;
 import io.vertx.rxjava.core.http.HttpServer;
 import io.vertx.rxjava.ext.web.Router;
 import lombok.extern.slf4j.Slf4j;

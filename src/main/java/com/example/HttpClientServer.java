@@ -19,11 +19,13 @@ public class HttpClientServer {
                 "io.vertx.core.logging.SLF4JLogDelegateFactory");
 
         Vertx vertx = Vertx.vertx(new VertxOptions().setMetricsOptions(
-                new DropwizardMetricsOptions().setJmxEnabled(true)
+                new DropwizardMetricsOptions()
+                        .setJmxDomain("HOGEHOGE")
+                        .setJmxEnabled(true)
         ));
         HttpServer httpServer = vertx.createHttpServer();
         Router router = Router.router(vertx);
-        HighLevelHttpClient httpClient = new HighLevelHttpClient(vertx, new HttpClientOptions().setMaxPoolSize(1000), 7);
+        HighLevelHttpClient httpClient = new HighLevelHttpClient(vertx, new HttpClientOptions().setMaxPoolSize(1), 7);
         router.route("/http").handler(
                 routingContext -> {
                     String url = routingContext.request().getParam("url");
