@@ -43,8 +43,6 @@ public class MdcTestServer {
         HttpServer httpServer = vertx.createHttpServer();
         Router router = Router.router(vertx);
         router.route().handler(context -> {
-            Vertx.currentContext().put("Wow", "OK");
-            context.put("Hello", "world");
             context.next();
             context.addBodyEndHandler(handler -> {
                 MDC.clear();
@@ -52,7 +50,8 @@ public class MdcTestServer {
         });
         router.route("/vertx/mdc/:id").handler(
                 routingContext -> {
-                    MDC.put("id", routingContext.pathParam("id"));
+                    String id = routingContext.pathParam("id");
+                    MDC.put("id", id);
                     vertx.setTimer(1, t -> {
                         // This case fails because RxJavaHooks never work on Vertx#setTimer.
                         routingContext.response()
