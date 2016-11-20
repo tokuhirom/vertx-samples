@@ -1,5 +1,6 @@
 target/
 !.mvn/wrapper/maven-wrapper.jar
+!target/demo-0.0.1-SNAPSHOT.jar
 
 ### STS ###
 .apt_generated
