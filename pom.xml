@@ -23,6 +23,7 @@
     </build>
     <modules>
         <module>benchmark</module>
+        <module>benchmark-client</module>
     </modules>
 
     <dependencies>
