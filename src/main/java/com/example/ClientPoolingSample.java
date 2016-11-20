@@ -21,7 +21,14 @@ public class ClientPoolingSample {
                                         .setValue(".*"))
                         .setJmxEnabled(true)
         ));
-        HighLevelHttpClient highLevelHttpClient = new HighLevelHttpClient(vertx, new HttpClientOptions().setMaxPoolSize(1).setMetricsName("hello"), 7);
+        HttpClientOptions options = new HttpClientOptions()
+                .setMaxPoolSize(1)
+                .setMaxWaitQueueSize(1000)
+                .setMetricsName("hello");
+        HighLevelHttpClient highLevelHttpClient = new HighLevelHttpClient(
+                vertx,
+                options,
+                7);
         highLevelHttpClient.get("http://localhost:8081/rx/sleep/100000").subscribe(httpClientResponse -> {
             log.info("Req1: {}", httpClientResponse.statusCode());
         });
