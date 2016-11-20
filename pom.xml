@@ -24,6 +24,7 @@
     <modules>
         <module>benchmark</module>
         <module>benchmark-client</module>
+        <module>benchmark-vertx-server</module>
     </modules>
 
     <dependencies>
