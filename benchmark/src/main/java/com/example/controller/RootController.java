@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class RootController {
     @GetMapping("/")
     public String proxy() {
-        new Thread().start();
         return "OK";
     }
 }
