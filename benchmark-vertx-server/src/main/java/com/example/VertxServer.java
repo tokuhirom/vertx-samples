@@ -3,7 +3,6 @@ package com.example;
 import io.vertx.rxjava.core.Vertx;
 import io.vertx.rxjava.core.http.HttpServer;
 import io.vertx.rxjava.ext.web.Router;
-import io.vertx.rxjava.ext.web.RoutingContext;
 
 public class VertxServer {
     public static void main(String[] args) {

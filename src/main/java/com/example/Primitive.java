@@ -1,7 +1,6 @@
 package com.example;
 
 import io.vertx.core.Vertx;
-import io.vertx.core.http.HttpClientOptions;
 import io.vertx.ext.web.Router;
 
 public class Primitive {
@@ -19,14 +18,14 @@ public class Primitive {
                 })
                 .listen(8080);
 
-Router router = Router.router(vertx);
-router.route("/hello/:name")
-    .handler(c -> {
-        c.response().end(
-                "Hello, " + c.pathParam("name"));
-    });
-vertx.createHttpServer()
-    .requestHandler(router::accept)
-    .listen(8081);
+        Router router = Router.router(vertx);
+        router.route("/hello/:name")
+                .handler(c -> {
+                    c.response().end(
+                            "Hello, " + c.pathParam("name"));
+                });
+        vertx.createHttpServer()
+                .requestHandler(router::accept)
+                .listen(8081);
     }
 }
